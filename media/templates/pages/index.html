@@ -1,0 +1,69 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+{% load hitcount_tags %}
+{% load humanize %}
+{% load thumbnail %}
+
+{% block content %}	
+
+<header class="main-header " style="background-image: url({% static 'assets/img/180132.jpg' %})">
+	<div class="vertical">
+		<div class="main-header-content inner">
+			<h1 class="page-title">Moviepy</h1>
+			<div class="entry-title-divider">
+				<span></span><span></span><span></span>
+			</div>
+			<h2 class="page-description">Moviepy.</h2>
+		</div>
+	</div>
+	<a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+{% if object_list %}
+<main id="content" class="content" role="main">
+
+	<div class="wraps">
+		<img src="{% static 'assets/img/shadow.png' %}" class="main-wrapshadow">
+		<div class="grid">
+				{% for obj in object_list %}
+					<div class="grid-item">
+						<article class="Movie">
+							
+							{% thumbnail obj.thumbnail "500x300" crop="center" as im %}
+								<a href="{% url 'movie:detail' obj.slug %}"><img src="{{ im.url }}"width="{{ im.width }}" height="{{ im.height }}" ></a>
+							{% endthumbnail %}
+
+							<div class="wrapgriditem">
+								
+								<header class="movie-header">
+									<h2 class="movie-title"><a href="{% url 'movie:detail' obj.slug %}">{{ obj.title }}</a></h2>
+								</header>
+								
+								<section class="movie-excerpt">
+									<p> {{ obj.description | truncatewords:"20" | safe }}</p>
+								</section>
+								
+								<footer class="movie-meta">
+									<a href="{% url 'movie:about-me' %}">
+										<img class="author-thumb" src="{% static 'assets/img/author-img.jpg' %}" alt="{{ obj.author.first_name }}" nopin="nopin"/>
+									</a>
+									<a href="{% url 'movie:about-me' %}">{{ obj.author.get_full_name  }}</a>
+									<time class="movie-date">{{ obj.created_at | naturaltime }}</time>
+									<span class="movie-date">{{ obj.get_readtime }} read</span>
+									<span class="movie-date"><i class="far fa-eye"></i>  {% get_hit_count for obj %}</span>
+								</footer>
+								
+							</div>
+						
+						</article>
+					</div>
+				{% endfor %}
+		</div>
+
+		{% include 'partials/__pagination.html' %}
+	</div>
+	
+</main>
+{% endif %}
+{% endblock content %}

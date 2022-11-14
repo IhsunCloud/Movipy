@@ -1,0 +1,21 @@
+{% extends 'shared/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<header class="main-header author-head " style="background-image: url({% static 'assets/img/180140.jpg' %})">
+</header>
+<section class="author-profile inner">
+	<figure class="author-image-profile">
+		<div class="img" style="background-image: url({% static 'assets/img/author-img.jpg' %})">
+			<span class="hidden">Amir Hossein Azad's Picture</span>
+		</div>
+	</figure>
+	<h1 class="author-title">Seyed Amir Hossein Azad</h1>
+	<h2 class="author-bio">The movie combining journalist Amir Hossein Azad&#x27;s years of experience covering fashion and culture for among others. Read my movie and you will learn how to become a fashion editor.</h2>
+	<div class="author-meta">
+		<span class="author-location icon-location">Iran, Tehran</span>
+		<span class="author-link icon-link"><a href="http://www.wowthemes.net">http://www.wowthemes.net</a></span>
+	</div>
+</section>
+{% endblock content %}

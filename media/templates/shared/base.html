@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+		
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title>Moviepy</title>
+
+<meta name="description" content="Thoughts, reviews and ideas since 1999."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<link rel="shortcut icon" href="#">
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/screen.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/styles.css' %}"/>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,300italic,300,400italic,700,700italic|Playfair+Display:400,700,400italic,700italic"/>
+
+<!-- FontAwesome JS-->
+<script defer src="{% static 'assets/fontawesome/js/all.min.js' %}"></script>
+
+<!-- Star Rating Static Files -->
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+</head>
+
+<body class="home-template">
+<div class="site-wrapper">
+    
+    {% include 'partials/__main-nav.html' %}
+     
+    {% block content %}
+    {% endblock content %}
+
+    {% include 'partials/__site-footer.html' %}
+
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="{% static 'assets/js/masonry.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/jquery.fitvids.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/index.js' %}"></script>
+
+</body>
+</html>
