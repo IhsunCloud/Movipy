@@ -159,3 +159,5 @@ config.codekit
 config.codekit3
 
 settings.ini
+
+upload/
