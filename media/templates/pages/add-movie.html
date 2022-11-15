@@ -1,7 +1,8 @@
-{% comment %} {% extends 'shared/base.html' %}
+{% extends 'shared/base.html' %}
 
-{% load static %} {% endcomment %}
+{% load static %}
 
+{% block content %}
 <form method="POST" enctype="multipart/form-data">
  
     <!-- Security token -->
@@ -12,3 +13,4 @@
      
     <input type="submit" value="Submit">
 </form>
+{% endblock content %}

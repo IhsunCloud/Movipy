@@ -2,11 +2,11 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-class MovieRole(models.Model):
+class Role(models.Model):
     """ Model definition for a Role. """
     title = models.CharField(max_length=50)
     is_valid = models.BooleanField(default=True)
-    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name='Movie')
+    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name='movie')
 
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Updated At'), auto_now=True)
