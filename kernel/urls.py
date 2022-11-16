@@ -29,10 +29,9 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
     path('', include('movie.urls')),
     # path('api/', include('api.v1.urls')),  
-    
+    path('accounts/', include('accounts.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
