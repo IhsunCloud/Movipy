@@ -8,6 +8,8 @@ class Genre(models.Model):
     title = models.CharField(_('Title'), max_length=50)
     is_valid = models.BooleanField(_('Is Valid'), default=True)
     
+    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name='genre')
+    
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Updated At'), auto_now=True)
     
