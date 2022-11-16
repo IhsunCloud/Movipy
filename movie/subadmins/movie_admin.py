@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from movie.models import Crew, Genre, MovieCrew, Movie, Review, Role
+from movie.models import Crew, Genre, Movie, Review, Role
 
 
 @admin.register(Movie)
@@ -26,6 +26,5 @@ class MovieAdmin(admin.ModelAdmin):
 
 admin.site.register(Crew)
 admin.site.register(Genre)
-admin.site.register(MovieCrew)
 admin.site.register(Review)
 admin.site.register(Role)
