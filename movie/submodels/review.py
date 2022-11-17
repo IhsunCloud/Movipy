@@ -16,7 +16,8 @@ class Review(MPTTModel):
     title = models.CharField(_('Title'), max_length=200)
     text = models.TextField(_('Text'), null=True)
     slug = models.SlugField(_('Slug'), max_length=100, allow_unicode=True, unique=True)
-    movie = models.ForeignKey('movie.Movie', on_delete=models.SET_NULL, related_name=_('movie'),)
+    
+    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name=_('movies'))
     
     by = models.ForeignKey(
         'accounts.User', 
@@ -38,12 +39,12 @@ class Review(MPTTModel):
     
     class Meta:
         """ Meta definition of Reviews. """
-        db_index = True
-        db_table = 'comments'
-        order_insertion_by = ['name']
+        # db_index = True
+        # db_table = 'comments'
+        # order_insertion_by = ['name']
         verbose_name = 'Review'
         verbose_name_plural = 'Reviews'
-        ordering = ('-created',)
+        ordering = ('-created_at',)
     
     def __str__(self):
         """ Unique representation of Reviews. """
