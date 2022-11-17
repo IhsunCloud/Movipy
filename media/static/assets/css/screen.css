@@ -928,7 +928,7 @@ body:not(.Movie-template) .Movie-title {
 .read-more {
 	text-decoration:none;
 }
-.Movie-meta {
+.movie-meta {
 	display:block;
 	margin:1.75rem 0 0 0;
 	font-size:1.6rem;
@@ -1015,7 +1015,7 @@ body:not(.Movie-template) .Movie-title {
 	border: none;
 }
 /* Stop elements,such as img wider than the Movie content,from creating horizontal scroll - slight hack due to imperfections with browser width % calculations and rounding */
-.Movie-template .content {
+.movie-template .content {
 	width:80%;
 	max-width:900px;
 	margin:0px auto;
@@ -1672,7 +1672,7 @@ h2.widget-title {
 		width:auto;
 		margin:2rem auto;
 	}
-	.Movie {
+	.movie {
 		width:auto;
 		margin-top:2rem;
 		margin-bottom:2rem;
@@ -1681,13 +1681,13 @@ h2.widget-title {
 		padding-bottom:2rem;
 		line-height:1.65em;
 	}
-	.Movie-date {
+	.movie-date {
 		display:none;
 	}
-	.Movie-template .Movie-header {
+	.movie-template .movie-header {
 		margin-bottom:2rem;
 	}
-	.Movie-template .Movie-date {
+	.movie-template .movie-date {
 		display:inline-block;
 	}
 	hr {
@@ -1700,7 +1700,7 @@ h2.widget-title {
 	.page-title {
 		font-size:3rem;
 	}
-	.Movie-excerpt p {
+	.movie-excerpt p {
 		font-size:0.85em;
 	}
 	.page-description {
@@ -1729,13 +1729,13 @@ h2.widget-title {
 	h6 {
 		font-size:1.8rem;
 	}
-	body:not(.Movie-template) .Movie-title {
+	body:not(.movie-template) .movie-title {
 		font-size:2.5rem;
 	}
-	.Movie-template .site-footer {
+	.movie-template .site-footer {
 		margin-top: 0;
 	}
-	.Movie-content img {
+	.movie-content img {
 		padding:0;
 		width:calc(100%+32px);
 		/* expand with to image+margins */
@@ -1743,24 +1743,24 @@ h2.widget-title {
 		max-width:112%;
 		/* fallback when calc doesn't work */
 	}
-	.Movie-meta {
+	.movie-meta {
 		font-size:1.3rem;
 		margin-top:1rem;
 	}
-	.Movie-footer {
+	.movie-footer {
 		padding:5rem 0 3rem 0;
 		text-align:center;
 	}
-	.Movie-footer .author {
+	.movie-footer .author {
 		margin:0 0 2rem 0;
 		padding:0 0 1.6rem 0;
 		border-bottom:#EBF2F6 1px dashed;
 	}
-	.Movie-footer .share {
+	.movie-footer .share {
 		position:static;
 		width:auto;
 	}
-	.Movie-footer .share a {
+	.movie-footer .share a {
 		margin:1.4rem 0.8rem 0 0.8rem;
 	}
 	.author-meta li {
@@ -1771,7 +1771,7 @@ h2.widget-title {
 	.author-meta li:before {
 		display:none;
 	}
-	.older-Movies,.newer-Movies {
+	.older-movies,.newer-movies {
 		position:static;
 		margin:10px 0;
 	}
@@ -1803,7 +1803,7 @@ h2.widget-title {
 		margin-top:2rem;
 		margin-bottom:-37px;
 	}
-	.read-next .Movie {
+	.read-next .movie {
 		width: 100%;
 	}
 }
