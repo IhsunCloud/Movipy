@@ -29,20 +29,18 @@ class Movie(models.Model):
 	slug = models.SlugField(_('Slug'), max_length=100, allow_unicode=True, unique=True)
 	description = RichTextField(_('Description'), null=True)
 	pub_date = models.DateTimeField(_('Published Date'), null=True)
- 
-	directors = models.ManyToManyField('movie.Actor', through='MovieDirector')
-	actors = models.ManyToManyField('movie.Actor', through='MovieActor')
-	
-	imdb_rating = models.PositiveSmallIntegerField(_('Imdb Rating'), default=0, null=True)
+
+	actors = models.ForeignKey('movie.Actor', on_delete=models.CASCADE, related_name='actor')
+  
+	imdb_rating = models.PositiveSmallIntegerField(_('IMDB Rating'), default=0, null=True)
 	budget = models.PositiveSmallIntegerField(_('Movie Budget'), default=0, null=True)
 	trailer = models.FileField(_('Trailer'), null=True, blank=True)
 	thumbnail = models.ImageField(_('Thumbnail'), upload_to="movie/images/", null=True)
-	posters = models.ForeignKey('movie.Poster', on_delete=models.SET_NULL, null=True)
-	genres = models.ManyToManyField('movie.Genre', related_name='movies')
-	role = models.ForeignKey('movie.Role', on_delete=models.SET_NULL, related_name=_('role'))
-	reviews = models.ForeignKey('movie.Reviews', on_delete=models.SET_NULL, verbose_name=_('Reviews'))
-	tags = TaggableManager()
- 
+	genres = models.ForeignKey('movie.Genre', on_delete=models.CASCADE, related_name='genres')
+	posters = models.ForeignKey('movie.Poster', on_delete=models.CASCADE, null=True)
+	role = models.ForeignKey('movie.Role', on_delete=models.CASCADE, related_name=_('role'))
+	reviews = models.ForeignKey('movie.Review', on_delete=models.CASCADE, related_name=_('review'), verbose_name=_('Reviews'))
+
 	ratings = GenericRelation(Rating, related_query_name='ratings')
 	hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',
 		related_query_name='hit_count_generic_relation')
@@ -50,11 +48,13 @@ class Movie(models.Model):
 	created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
 	updated_at = models.DateTimeField(_('Updated At'), auto_now=True)
  
+	tags = TaggableManager()
+ 
 	class Meta:
 		""" Meta definition of Movies. """
-		db_index = True
-		order_insertion_by = ['title']
-		unique_together = ('movie', 'genre')
+		# db_index = True
+		# order_insertion_by = ['title']
+		# unique_together = ('movie', 'genre')
 		verbose_name = _('Movie')
 		verbose_name_plural = _('Movies')
 		ordering = ['-created_at']
