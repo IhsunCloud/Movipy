@@ -8,7 +8,6 @@ from movie.models import Crew, Genre, Movie, Review, Role
 class MovieAdmin(admin.ModelAdmin):
 	date_hierarchy = 'created_at'
 	empty_value_display = '-empty-'
-	fields = (('title','pub_date'), 'director')
 	list_display = ('title', 'get_author_name', 'created_at',)
 	list_filter = ('title', 'created_at',)
 	prepopulated_fields = {'slug': ('title',), }
