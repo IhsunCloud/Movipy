@@ -1,0 +1,40 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="movie-template page-template page">
+    
+	<header class="main-header movie-head " style="background-image: url({% static 'assets/img/amir-azad.jpg' %})">
+        <div class="vertical">
+            <div class="main-header-content inner">
+                <h1 class="movie-title">
+                    {% if user.is_authenticated %}
+                        Hi {{ request.user }} <br/>
+                        <a href="{% url 'accounts:logout' %}">Log Out</a>
+                    {% else %}
+                        Hi. Please Sign in or Create an Account.
+                    {% endif %}
+                </h1>
+            </div>
+        </div>
+	</header>
+
+    <main class="content" role="main">
+        <article class="movie tag-fashion tag-art page">
+
+        <section class="movie-content">
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit"><span class="hidden">Sign Up</span>
+            </form>
+            
+        </section>
+
+        </article>
+    </main>
+<div>
+    
+{% endblock content %}
+    
