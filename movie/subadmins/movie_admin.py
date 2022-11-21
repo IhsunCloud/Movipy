@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from movie.models import Crew, Genre, Movie, Review, Role
+from movie.models import Actor, Crew, Genre, Movie, Review, Role
 
 
 @admin.register(Movie)
@@ -10,7 +10,7 @@ class MovieAdmin(admin.ModelAdmin):
 	empty_value_display = '-empty-'
 	list_display = ('title', 'get_author_name', 'created_at',)
 	list_filter = ('title', 'created_at',)
-	prepopulated_fields = {'slug': ('title',), }
+	prepopulated_fields = {'slug': ('title',),}
 	ordering = ('-created_at',)
 
 	def get_author_name(self, obj):
@@ -23,6 +23,7 @@ class MovieAdmin(admin.ModelAdmin):
 		return get_data
 
 
+admin.site.register(Actor)
 admin.site.register(Crew)
 admin.site.register(Genre)
 admin.site.register(Review)
