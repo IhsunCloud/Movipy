@@ -121,6 +121,19 @@
 				<span class="hidden">Google+</span>
 				</a>
 			</section>
+
+			{% comment %} users comments  {% endcomment %}
+			
+			{% if object.review.all %}
+				<section class="author">
+					<h4><a href="{% url 'movie:about-me' %}">{{ object.review.name }}</a></h4>
+						{{ object.review.text }}
+					<div class="author-meta">
+						<span class="author-location icon-location">Iran, Tehran</span>
+						<span class="author-link icon-link"><a href="https://www.wowthemes.net">https://www.wowthemes.net</a></span>
+					</div>
+				</section>
+			{% endif %}
 			
 		</footer>
 
