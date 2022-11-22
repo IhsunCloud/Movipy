@@ -2,9 +2,8 @@ from django.views import generic
 from django.views.generic.edit import CreateView, ModelFormMixin
 
 from hitcount.views import HitCountDetailView
-# from django_xhtml2pdf.views import PdfMixin
 
-# from movie.forms import AddMovieForm
+from movie.forms import AddMovieForm
 
 from .models import Movie
 
@@ -42,8 +41,8 @@ class AboutMeView(generic.TemplateView):
 class AddMovieView(CreateView):
     template_name = 'pages/add-movie.html'
     model = Movie
-    # form_class = AddMovieForm
-    # success_url = '/thanks/'
+    form_class = AddMovieForm
+    success_url = '/index/'
     fields = [
         'title',
         'description',
