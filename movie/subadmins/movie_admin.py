@@ -9,6 +9,7 @@ class ActorInline(admin.TabularInline):
 	extra = 3
 
 
+
 class GenreInline(admin.TabularInline):
 	model = Genre
 	extra = 3
@@ -26,34 +27,38 @@ class RoleInline(admin.TabularInline):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
+	classes = ['collapse']
 	date_hierarchy = 'created_at'
 	empty_value_display = '-empty-'
 	list_display = ('title', 'get_author_name', 'created_at',)
 	list_filter = ('title', 'created_at',)
+	ordering = ('-created_at',)
+	prepopulated_fields = {'slug': ('title',)}
 	readonly_fields = ('id',)
-	classes = ['collapse']
+	inlines = [
+		ActorInline,
+		GenreInline,
+		ReviewInline,
+		RoleInline,
+	]
 	fieldsets = [
 		(None,
 			{'fields': ['title']},
      	),
 		('Data Information',
 				{
-				'fields': ['slug'],
-				'fields': ['pub_date'],
-				'fields': ['imdb_rating'],
-				'fields': ['budget'],
-				'fields': ['trailer'],
-				'fields': ['thumbnail'],
+				'fields': [
+        				'slug',
+						'author',
+						'pub_date',
+						'imdb_rating',
+						'budget',
+						'trailer',
+						'thumbnail'
+     				],
 			},
 		)
     ]
-	inlines = [
-		ActorInline,
-		GenreInline,
-		ReviewInline,
-		RoleInline,
-	] 
-	ordering = ('-created_at',)
 
 	def get_author_name(self, obj):
 		return obj.author.first_name + ' ' + obj.author.last_name
