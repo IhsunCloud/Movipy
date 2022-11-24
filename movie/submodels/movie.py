@@ -21,10 +21,7 @@ class Movie(models.Model):
         ('D', 'Draft'),
         ('P', 'Published'),
     )
-
-    author = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True)
-    status = models.CharField(_('Status'), max_length=1, default='D', choices=STATUS_CHOICES)
-    
+    author = models.ForeignKey('accounts.User', null=True, on_delete=models.CASCADE, related_name='movie')
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, allow_unicode=True, unique=True)
     description = RichTextField(_('Description'), null=True)
@@ -38,6 +35,8 @@ class Movie(models.Model):
     ratings = GenericRelation(Rating, related_query_name='ratings')
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
+    
+    status = models.CharField(_('Status'), max_length=1, default='D', choices=STATUS_CHOICES)
     
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Updated At'), auto_now=True)
@@ -74,7 +73,7 @@ class Movie(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-              self.slug = slugify(self.title)
+            self.slug = slugify(self.title)
         super(Movie, self).save(*args, **kwargs)
 
     objects = MovieManager()

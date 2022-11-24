@@ -9,7 +9,6 @@ class User(AbstractUser):
 	avatar = models.ImageField(upload_to='uploads/avatars/%Y-%m-%d/', null=True)
 	bio = models.TextField(null=True)
 
-
 class Email(models.Model):
 	""" Model definition for Emails. """
 

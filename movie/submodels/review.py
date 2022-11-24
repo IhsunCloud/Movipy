@@ -49,7 +49,7 @@ class Review(MPTTModel):
     
     def __str__(self):
         """ Unique representation of Reviews. """
-        return f"{self.name} {self.title[10]}"
+        return f"{self.name} {self.title}"
     
     def __repr__(self):
         """ Unique representation of Reviews. """
