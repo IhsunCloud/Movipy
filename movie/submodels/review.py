@@ -17,8 +17,9 @@ class Review(MPTTModel):
     text = models.TextField(_('Text'), null=True)
     slug = models.SlugField(_('Slug'), max_length=100, allow_unicode=True, unique=True)
     city = models.CharField(_("User's City"), max_length=16)
+    status = models.CharField(_("Status"), max_length=1, default='R', choices=STATUS_CHOICES)
     
-    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name=_('movies'))
+    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name='review', null=True)
     
     by = models.ForeignKey(
         'accounts.User', 
