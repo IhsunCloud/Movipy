@@ -38,7 +38,7 @@ class MovieAdmin(admin.ModelAdmin):
 	inlines = [
 		ActorInline,
 		GenreInline,
-		ReviewInline,
+		# ReviewInline,
 		RoleInline,
 	]
 	fieldsets = [
@@ -55,6 +55,7 @@ class MovieAdmin(admin.ModelAdmin):
 						'budget',
 						'trailer',
 						'thumbnail',
+						'tags',
 						'status'
      				],
 			},
