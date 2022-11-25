@@ -43,18 +43,19 @@ class MovieAdmin(admin.ModelAdmin):
 	]
 	fieldsets = [
 		(None,
-			{'fields': ['title']},
+			{'fields': ['title', 'slug']},
      	),
 		('Data Information',
 				{
 				'fields': [
-        				'slug',
+						'description',
 						'author',
 						'pub_date',
 						'imdb_rating',
 						'budget',
 						'trailer',
-						'thumbnail'
+						'thumbnail',
+						'status'
      				],
 			},
 		)
