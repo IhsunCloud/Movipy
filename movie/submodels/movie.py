@@ -25,10 +25,10 @@ class Movie(models.Model):
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, allow_unicode=True, unique=True)
     description = RichTextField(_('Description'), null=True)
-    pub_date = models.DateTimeField(_('Published Date'), null=True)
+    pub_date = models.DateField(_('Published Date'), null=True)
   
-    imdb_rating = models.PositiveSmallIntegerField(_('IMDB Rating'), default=0, null=True)
-    budget = models.PositiveSmallIntegerField(_('Movie Budget'), default=0, null=True)
+    imdb_rating = models.FloatField(_('IMDB Rating'), default=0, null=True)
+    budget = models.DecimalField(_('Movie Budget'), decimal_places=3, max_digits=6, default=0, null=True)
     trailer = models.FileField(_('Trailer'), null=True, blank=True)
     thumbnail = models.ImageField(_('Thumbnail'), upload_to="movie/images/", null=True)
 
