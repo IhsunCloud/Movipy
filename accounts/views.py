@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
@@ -20,7 +21,7 @@ class LoginView(generic.View):
 
         if user is not None:
               login(request, user)
-              return redirect('/')
+              return redirect('index')
         else:
             return("please sign up")
 
@@ -31,16 +32,16 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('/')
+            return redirect('index')
     else:
         form = AuthenticationForm()
-    return render(request, '/', {'form': form})
+    return render(request, 'index', {'form': form})
 
 
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
-        return redirect('/')
+    return HttpResponse(f'<h1>{request.user} Logged Out :)</h1>', status=401)
  
  
  
