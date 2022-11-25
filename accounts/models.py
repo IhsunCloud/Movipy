@@ -8,6 +8,9 @@ class User(AbstractUser):
 
 	avatar = models.ImageField(upload_to='uploads/avatars/%Y-%m-%d/', null=True)
 	bio = models.TextField(null=True)
+ 
+	def get_full_name(self):
+		return f'{self.first_name} {self.last_name}'
 
 class Email(models.Model):
 	""" Model definition for Emails. """
