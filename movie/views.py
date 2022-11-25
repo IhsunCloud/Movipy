@@ -29,11 +29,6 @@ class MovieDetailView(HitCountDetailView):
     count_hit = True
 
 
-class GeneratePDFView(generic.DetailView):
-    model = Movie
-    template_name = 'pages/pdf.html'
-
-
 class AboutMeView(generic.TemplateView):
     template_name = 'pages/author.html'
     

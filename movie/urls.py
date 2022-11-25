@@ -7,7 +7,6 @@ from .views import (
     TagIndexView,
     MovieDetailView,
     AddMovieView,
-    GeneratePDFView,
     AboutMeView
 )
 
@@ -22,7 +21,6 @@ urlpatterns = [
     
     path('movie/<slug:slug>/', MovieDetailView.as_view(), name='detail'),
     path('add-movie/', AddMovieView.as_view(), name='add-movie'),
-    path('generate/pdf/<slug:slug>/', GeneratePDFView.as_view(), name='generate_pdf'),
 
     path('about-me/', AboutMeView.as_view(), name='about-me'),
 ]
