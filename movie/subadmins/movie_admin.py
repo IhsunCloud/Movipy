@@ -38,18 +38,19 @@ class MovieAdmin(admin.ModelAdmin):
 	inlines = [
 		ActorInline,
 		GenreInline,
-		# ReviewInline,
+		ReviewInline,
 		RoleInline,
 	]
 	fieldsets = [
 		(None,
-			{'fields': ['title', 'slug']},
+			{'fields': ['title', 'slug', 'author']},
      	),
 		('Data Information',
 				{
 				'fields': [
 						'description',
-						'author',
+						'director',
+						'actor',
 						'pub_date',
 						'imdb_rating',
 						'budget',

@@ -4,7 +4,7 @@
 {% block content %}
 <div class="movie-template page-template page">
     
-	<header class="main-header movie-head " style="background-image: url({% static 'assets/img/amir-azad.jpg' %})">
+	<header class="main-header movie-head " style="background-image: url({% static 'assets/img/banner.jpg' %})">
         <div class="vertical">
             <div class="main-header-content inner">
                 <h1 class="movie-title">
@@ -18,22 +18,23 @@
             </div>
         </div>
 	</header>
-
-    <main class="content" role="main">
-        <article class="movie tag-fashion tag-art page">
-
-        <section class="movie-content">
-
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit"><span class="hidden">Sign Up</span>
-            </form>
-            
-        </section>
-
-        </article>
-    </main>
+    {% if not user.is_authenticated %}
+        <main class="content" role="main">
+            <article class="movie tag-fashion tag-art page">
+    
+            <section class="movie-content">
+    
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit"><span class="hidden">Sign Up</span>
+                </form>
+                
+            </section>
+    
+            </article>
+        </main>
+    {% endif %}
 <div>
     
 {% endblock content %}

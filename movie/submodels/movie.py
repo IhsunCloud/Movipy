@@ -25,6 +25,8 @@ class Movie(models.Model):
     title = models.CharField(_('Title'), max_length=200)
     slug = models.SlugField(_('Slug'), max_length=100, allow_unicode=True, unique=True)
     description = RichTextField(_('Description'), null=True)
+    director = models.ForeignKey('movie.Actor', null=True, blank=True, on_delete= models.CASCADE, related_name='director')
+    actor = models.ForeignKey('movie.Actor', null=True, blank=True, on_delete= models.CASCADE, related_name='actor')
     pub_date = models.DateField(_('Published Date'), null=True)
   
     imdb_rating = models.FloatField(_('IMDB Rating'), default=0, null=True)

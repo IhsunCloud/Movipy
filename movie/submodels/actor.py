@@ -7,20 +7,16 @@ def actor_avatar_directory_path(instance, filename):
 
 class Actor(models.Model):
     """ Model definition for Actor. """
-    
-    ROLE = (
-        ('A', 'Actor'),
-        ('D', 'Director'),
-    )
+    class ROLE(models.TextChoices):
+        ACTOR    = 'AR', _('Actor')
+        DIRECTOR = 'DR', _('Director')
      
     first_name = models.CharField(_('Firstname'), max_length=32, null=True)
     last_name = models.CharField(_('Lastname'), max_length=32, null=True)
-    role = models.CharField(_('Role'), choices=ROLE, max_length=1, null=True)
     birthday = models.DateField(_('Birthday'), null=True)
     avatar = models.ImageField(_('Avatar'), upload_to=actor_avatar_directory_path, null=True)
-    
-    movie = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name='actor')
-   
+    role = models.CharField(_('Role'), choices=ROLE.choices, max_length=2, default=ROLE.ACTOR)
+    movies = models.ForeignKey('movie.Movie', on_delete=models.CASCADE, related_name='actors', null=True)   
     class Meta:
         """ Meta information of the Actor"""
         verbose_name = _('Actor')
@@ -36,6 +32,38 @@ class Actor(models.Model):
         return self.__str__()
     
     @property
-    def full_name(self):
+    def get_full_name(self):
         """ Returns fullname of Actor. """
         return f'{self.first_name} {self.last_name}'
+    
+    @property
+    def get_directors_fullname(self):
+        """ Returns directors fullname. """
+        director = self.role in {
+            self.DIRECTOR
+        }
+        return director.first_name + director.last_name
+    
+    @property
+    def get_actors_fullname(self):
+        """ Returns actors fullname. """
+        actor = self.role in {
+            self.role.ACTOR
+        }
+        return f'{actor.first_name} {actor.last_name}'
+    
+    @property
+    def get_actors_avatar(self):
+        """ Returns actors avatar. """
+        actor = self.role in {
+            self.role.ACTOR
+        }
+        return actor.avatar
+    
+    @property
+    def get_directors_avatar(self):
+        """ Returns directors avatar. """
+        director = self.role in {
+            self.role.DIRECTOR
+        }
+        return director.avatar

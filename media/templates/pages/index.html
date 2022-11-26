@@ -37,20 +37,21 @@
 							<div class="wrapgriditem">
 								
 								<header class="movie-header">
-									<h2 class="movie-title"><a href="{% url 'movie:detail' obj.slug %}">{{ obj.title }}</a></h2>
+									<h2 class="movie-title"><a href="{% url 'movie:detail' obj.slug %}">{{ obj.title }} ({{ obj.pub_date |date:'Y'}})</a></h2>
+									<h5>{{ obj.director }}</h5>
 								</header>
 								
 								<section class="movie-excerpt">
-									<p> {{ obj.description | truncatewords:"20" | safe }}</p>
+									<p> {{ obj.description | truncatewords:"16" | safe }}</p>
 								</section>
 								
 								<footer class="movie-meta">
 									<a href="{% url 'movie:about-me' %}">
-										<img class="author-thumb" src="{% static 'assets/img/author-img.jpg' %}" alt="{{ obj.author.first_name }}" nopin="nopin"/>
+										<img class="author-thumb" src="{% static 'assets/img/ihsun.jpg' %}" alt="{{ obj.author.first_name }}" nopin="nopin"/>
 									</a>
-									<a href="{% url 'movie:about-me' %}">{{ obj.author.get_full_name  }}</a>
-									<time class="movie-date">{{ obj.created_at | naturaltime }}</time>
-									<span class="movie-date">{{ obj.get_readtime }} read</span>
+									<a href="{% url 'movie:about-me' %}">{{ obj.author.get_full_name }} | </a>
+									<time class="movie-date">{{ obj.created_at | naturaltime }} | </time>
+									<span class="movie-date">{{ obj.get_readtime }} read | </span>
 									<span class="movie-date"><i class="far fa-eye"></i>  {% get_hit_count for obj %}</span>
 								</footer>
 								
