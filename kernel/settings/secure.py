@@ -1,6 +1,6 @@
-from .base import BASE_DIR
-from decouple import config
 import os
+from decouple import config
+from kernel.settings.base import BASE_DIR
 
 
 SECRET_KEY = config('SECRET_KEY')
